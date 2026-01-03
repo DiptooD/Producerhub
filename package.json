@@ -1,6 +1,7 @@
 {
-  "name": "producerhub",
+  "name": "producer-hub",
   "version": "1.0.0",
+  "description": "Professional Audio Resource Marketplace",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
