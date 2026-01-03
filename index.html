@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProducerHub | Premium Audio Resources</title>
+    <meta name="description" content="Download professional VSTs, Sample Packs, and Presets. The ultimate hub for music producers.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Montserrat:wght@800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="initApp()">
+
+    <nav class="navbar">
+        <div class="logo" onclick="showPage('home')">PRODUCER<span>HUB</span></div>
+        
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search resources..." onkeyup="handleSearch()">
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="#" onclick="showPage('home')">Home</a></li>
+            <li><a href="#" onclick="showPage('trending')">Offers</a></li>
+            <li><a href="#" onclick="showPage('freebies')">Freebies</a></li>
+            <li><a href="#" onclick="showPage('shortcuts')">Workflow</a></li>
+            <li><a href="#" onclick="showPage('chat-page')">Community</a></li>
+        </ul>
+    </nav>
+
+    <div id="admin-tools" class="admin-bar" style="display:none;">
+        <div class="admin-info">ADMIN MODE ACTIVE</div>
+        <div class="admin-actions">
+            <button onclick="openModal()" class="admin-btn">+ New Post</button>
+            <button onclick="logoutAdmin()" class="admin-btn logout">Logout</button>
+        </div>
+    </div>
+
+    <main id="main-content">
+        
+        <section id="home" class="page active-page">
+            <div class="mini-promo-banner">
+                <div class="banner-content">
+                    <span class="pulse-icon"></span>
+                    <strong>NEXT DROP:</strong> 
+                    <span id="countdown" class="timer-mini">00d 00h 00m 00s</span>
+                    <button class="banner-btn" onclick="showPage('freebies')">Claim Now</button>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="slider-header">
+                    <h2>🔥 Trending Offers</h2>
+                    <div class="slider-controls">
+                        <button class="arrow-btn" onclick="moveSlider('trending-slider', -1)">&#10094;</button>
+                        <button class="arrow-btn" onclick="moveSlider('trending-slider', 1)">&#10095;</button>
+                    </div>
+                </div>
+                <div id="trending-slider" class="horizontal-scroll drag-scroll">
+                    </div>
+            </div>
+
+            <div class="section-container">
+                <div class="slider-header">
+                    <h2>🎁 Fresh Freebies</h2>
+                    <div class="slider-controls">
+                        <button class="arrow-btn" onclick="moveSlider('freebies-slider', -1)">&#10094;</button>
+                        <button class="arrow-btn" onclick="moveSlider('freebies-slider', 1)">&#10095;</button>
+                    </div>
+                </div>
+                <div id="freebies-slider" class="horizontal-scroll drag-scroll">
+                    </div>
+            </div>
+        </section>
+
+        <section id="shortcuts" class="page">
+            <div class="page-header">
+                <h1>Workflow Optimization</h1>
+                <p>Master these essential DAW shortcuts to produce faster than ever.</p>
+            </div>
+            <div class="workflow-grid" id="workflow-list">
+                </div>
+        </section>
+
+        <section id="chat-page" class="page">
+            <div class="chat-container">
+                <div class="chat-header">Global Producer Chat</div>
+                <div class="chat-messages" id="chat-box">
+                    </div>
+                <form class="chat-input-area" onsubmit="sendChatMessage(event)">
+                    <input type="text" id="chat-input" placeholder="Type a message to the community..." autocomplete="off">
+                    <button type="submit">Send</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="post-detail" class="page">
+            <div class="detail-container">
+                <button class="back-btn" onclick="showPage('home')">← Back to Browse</button>
+                
+                <div id="detail-main-content" class="detail-top-grid"></div>
+
+                <div id="detail-description-content" class="detail-bottom-text"></div>
+
+                <hr class="detail-sep">
+
+                <div class="related-section">
+                    <h3>Related Resources</h3>
+                    <div id="related-slider" class="horizontal-scroll drag-scroll"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="trending" class="page">
+            <div class="page-header">
+                <h1>Premium Offers</h1>
+                <div class="filter-bar">
+                    <button class="filter-btn active" onclick="setFilter('all', this)">All</button>
+                    <button class="filter-btn" onclick="setFilter('vst', this)">VSTs</button>
+                    <button class="filter-btn" onclick="setFilter('sample packs', this)">Sample Packs</button>
+                    <button class="filter-btn" onclick="setFilter('presets', this)">Presets</button>
+                </div>
+            </div>
+            <div id="trending-grid" class="grid-layout"></div>
+        </section>
+
+        <section id="freebies" class="page">
+            <div class="page-header">
+                <h1>Free Producer Kits</h1>
+                <div class="filter-bar">
+                    <button class="filter-btn active" onclick="setFilter('all', this)">All</button>
+                    <button class="filter-btn" onclick="setFilter('vst', this)">VSTs</button>
+                    <button class="filter-btn" onclick="setFilter('sample packs', this)">Sample Packs</button>
+                    <button class="filter-btn highlight" onclick="setFilter('limited', this)">⏳ Limited Only</button>
+                </div>
+            </div>
+            <div id="freebies-grid" class="grid-layout"></div>
+        </section>
+    </main>
+
+    <section class="newsletter-section">
+        <div class="newsletter-content">
+            <h2>Join the Inner Circle</h2>
+            <p>Get the latest VSTs, Sample Packs, and Limited Offers delivered to your inbox.</p>
+            <form class="newsletter-form" onsubmit="handleSubscribe(event)">
+                <input type="email" id="newsletter-email" placeholder="Enter your email address" required>
+                <button type="submit">Subscribe</button>
+            </form>
+            <p id="subscribe-msg" style="margin-top: 15px; font-size: 0.8rem; color: var(--accent);"></p>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="logo">PRODUCER<span>HUB</span></div>
+                <p>The world's most curated resource for modern music producers. Professional tools for professional creators.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="#" onclick="showPage('trending')">Premium Offers</a></li>
+                    <li><a href="#" onclick="showPage('freebies')">Free Kits</a></li>
+                    <li><a href="#" onclick="showPage('shortcuts')">Workflow</a></li>
+                    <li><a href="#" onclick="showPage('chat-page')">Community</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Categories</h4>
+                <ul>
+                    <li><a href="#" onclick="showPage('trending'); setFilter('vst', this)">VST Plugins</a></li>
+                    <li><a href="#" onclick="showPage('trending'); setFilter('sample packs', this)">Sample Packs</a></li>
+                    <li><a href="#" onclick="showPage('trending'); setFilter('presets', this)">Synth Presets</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 ProducerHub. All Rights Reserved.</p>
+            <button onclick="loginAdmin()" class="admin-login-link">Admin Access</button>
+        </div>
+    </footer>
+
+    <div id="postModal" class="modal-overlay">
+        <div class="modal-box">
+            <h2>Post Management</h2>
+            <input type="hidden" id="editPostId">
+            <input type="text" id="postTitle" placeholder="Resource Title">
+            <input type="text" id="postImg" placeholder="Image URL">
+            <input type="text" id="postLink" placeholder="Download/Buy URL">
+            
+            <div style="display:flex; gap:10px;">
+                <select id="postCat" style="flex:1;">
+                    <option value="trending">Premium Offer</option>
+                    <option value="freebies">Freebie</option>
+                </select>
+                <select id="postTag" style="flex:1;">
+                    <option value="vst">VST</option>
+                    <option value="sample packs">Sample Pack</option>
+                    <option value="presets">Presets</option>
+                </select>
+            </div>
+
+            <input type="text" id="postPrice" placeholder="Price Display (e.g. $29.99 or FREE)">
+            
+            <div class="checkbox-row" style="display: flex; align-items: center; gap: 8px;">
+                <input type="checkbox" id="postLimited"> 
+                <label for="postLimited" style="font-size: 0.85rem;">Mark as Limited Time Offer</label>
+            </div>
+
+            <textarea id="postDesc" placeholder="Full Description..." rows="5"></textarea>
+            
+            <div class="modal-btns">
+                <button class="btn-save" onclick="savePost()">Save Post</button>
+                <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+            </div>
+            <button id="deleteBtn" onclick="deletePost()" style="display:none; background:#ff3e3e; color:white; border:none; padding:12px; border-radius:8px; cursor:pointer; margin-top:10px; font-weight: bold;">Delete Resource</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

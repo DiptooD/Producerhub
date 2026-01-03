@@ -1,0 +1,606 @@
+/* PRODUCERHUB CORE STYLESHEET 
+    Version: 2026.1.1
+    Description: Comprehensive styles for Sliders, Chat, Workflow, and Admin systems.
+*/
+
+/* --- 1. GLOBAL RESET & VARIABLES --- */
+:root {
+    --bg: #050505;
+    --card: #111111;
+    --card-hover: #1a1a1a;
+    --accent: #00ff88;
+    --accent-glow: rgba(0, 255, 136, 0.25);
+    --text: #ffffff;
+    --text-dim: #a0a0a0;
+    --border: #222222;
+    --nav-h: 80px;
+    --radius-lg: 16px;
+    --radius-md: 10px;
+    --radius-sm: 6px;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, system-ui, sans-serif;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* --- 2. TYPOGRAPHY --- */
+h1, h2, h3, .logo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+}
+
+/* --- 3. NAVIGATION --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 6%;
+    height: var(--nav-h);
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.logo span {
+    color: var(--accent);
+    text-shadow: 0 0 15px var(--accent-glow);
+}
+
+.search-bar {
+    flex: 0 1 400px;
+    margin: 0 20px;
+}
+
+.search-bar input {
+    width: 100%;
+    background: #111;
+    border: 1px solid var(--border);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 50px;
+    outline: none;
+    transition: var(--transition);
+}
+
+.search-bar input:focus {
+    border-color: var(--accent);
+    background: #151515;
+    box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-links a {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+}
+
+.nav-links a:hover {
+    color: var(--accent);
+}
+
+/* --- 4. ADMIN INTERFACE --- */
+.admin-bar {
+    background: var(--accent);
+    color: #000;
+    padding: 8px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 900;
+    font-size: 0.75rem;
+    position: sticky;
+    top: var(--nav-h);
+    z-index: 999;
+    box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+}
+
+.admin-btn {
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: var(--transition);
+}
+
+.admin-btn:hover {
+    background: #222;
+}
+
+/* --- 5. BANNER & PROMO --- */
+.mini-promo-banner {
+    background: linear-gradient(90deg, #0a0a0a, #151515, #0a0a0a);
+    padding: 18px;
+    border-bottom: 1px solid var(--border);
+}
+
+.banner-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    font-size: 0.9rem;
+}
+
+.pulse-icon {
+    width: 10px;
+    height: 10px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent);
+    animation: pulse-kf 1.5s infinite;
+}
+
+@keyframes pulse-kf {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.4); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.timer-mini {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent);
+    font-weight: 700;
+    background: rgba(0, 255, 136, 0.1);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+/* --- 6. SLIDERS & ARROWS --- */
+.section-container {
+    padding: 60px 6% 20px;
+}
+
+.slider-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 30px;
+}
+
+.slider-header h2 {
+    font-size: 1.8rem;
+}
+
+.slider-controls {
+    display: flex;
+    gap: 12px;
+}
+
+.arrow-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #111;
+    border: 1px solid var(--border);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: var(--transition);
+}
+
+.arrow-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: #1a1a1a;
+}
+
+.horizontal-scroll {
+    display: flex;
+    gap: 25px;
+    overflow-x: auto;
+    padding-bottom: 30px;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* Firefox */
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+/* --- 7. CARD SYSTEM --- */
+.card {
+    flex: 0 0 320px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    border-color: #444;
+    background: var(--card-hover);
+    box-shadow: var(--shadow);
+}
+
+.card-img {
+    width: 100%;
+    aspect-ratio: 16/10;
+    object-fit: cover;
+    border-bottom: 1px solid var(--border);
+}
+
+.card-content {
+    padding: 24px;
+}
+
+.card-content small {
+    display: block;
+    color: var(--accent);
+    font-weight: 800;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.card-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.limited-badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: #ff3e3e;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 900;
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    z-index: 10;
+}
+
+/* --- 8. WORKFLOW & SHORTCUTS --- */
+.workflow-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 30px;
+    padding: 40px 6%;
+}
+
+.shortcut-card {
+    background: #0d0d0d;
+    padding: 35px;
+    border-radius: var(--radius-lg);
+    border-left: 6px solid var(--accent);
+    transition: var(--transition);
+}
+
+.shortcut-card:hover {
+    background: #141414;
+    transform: translateX(10px);
+}
+
+.shortcut-card h4 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+}
+
+.shortcut-card kbd {
+    display: inline-block;
+    background: #252525;
+    color: var(--accent);
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 0 #000;
+}
+
+/* --- 9. COMMUNITY CHAT --- */
+.chat-container {
+    max-width: 900px;
+    margin: 50px auto;
+    background: #080808;
+    border: 1px solid var(--border);
+    border-radius: 25px;
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.chat-header {
+    padding: 24px;
+    border-bottom: 1px solid var(--border);
+    background: #000;
+    text-align: center;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.msg {
+    background: #151515;
+    padding: 15px 22px;
+    border-radius: 20px;
+    max-width: 80%;
+    width: fit-content;
+    font-size: 1rem;
+    border-bottom-left-radius: 4px;
+}
+
+.msg.me {
+    align-self: flex-end;
+    background: var(--accent);
+    color: #000;
+    font-weight: 700;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 4px;
+}
+
+.chat-input-area {
+    padding: 25px;
+    background: #000;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 15px;
+}
+
+.chat-input-area input {
+    flex: 1;
+    background: #111;
+    border: 1px solid var(--border);
+    color: #fff;
+    padding: 16px 22px;
+    border-radius: 12px;
+    outline: none;
+}
+
+.chat-input-area button {
+    background: var(--accent);
+    color: #000;
+    border: none;
+    padding: 0 35px;
+    border-radius: 12px;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+/* --- 10. POST DETAIL PAGE --- */
+.detail-container {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 0 6%;
+}
+
+.detail-top-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 70px;
+    align-items: flex-start;
+}
+
+.detail-img {
+    width: 100%;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+}
+
+.detail-top-grid h1 {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.accent-text {
+    font-size: 2.2rem;
+    color: var(--accent);
+    font-weight: 900;
+    margin-bottom: 40px;
+}
+
+.dl-btn-main {
+    width: 100%;
+    background: var(--accent);
+    color: #000;
+    padding: 24px;
+    border: none;
+    border-radius: 14px;
+    font-size: 1.3rem;
+    font-weight: 900;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.dl-btn-main:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 30px var(--accent-glow);
+}
+
+.detail-bottom-text {
+    margin-top: 80px;
+    padding-top: 60px;
+    border-top: 1px solid var(--border);
+    font-size: 1.15rem;
+    color: var(--text-dim);
+    line-height: 1.8;
+}
+
+/* --- 11. GRID LAYOUTS --- */
+.grid-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 40px;
+    padding: 50px 6%;
+}
+
+.page {
+    display: none;
+    animation: fadeIn 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.active-page {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- 12. NEWSLETTER --- */
+.newsletter-section {
+    padding: 100px 6%;
+    background: #080808;
+    text-align: center;
+    border-top: 1px solid var(--border);
+}
+
+.newsletter-form {
+    max-width: 600px;
+    margin: 40px auto 0;
+    display: flex;
+    gap: 10px;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 18px 25px;
+    background: #111;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: #fff;
+    outline: none;
+}
+
+.newsletter-form button {
+    padding: 0 35px;
+    background: var(--accent);
+    color: #000;
+    font-weight: 900;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+/* --- 13. MODALS --- */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-box {
+    background: #0f0f0f;
+    padding: 50px;
+    width: 95%;
+    max-width: 600px;
+    border-radius: 25px;
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.modal-box input, .modal-box select, .modal-box textarea {
+    background: #1a1a1a;
+    border: 1px solid var(--border);
+    padding: 16px;
+    color: #fff;
+    border-radius: 12px;
+    outline: none;
+}
+
+/* --- 14. FOOTER --- */
+.main-footer {
+    padding: 100px 6% 40px;
+    background: #000;
+    border-top: 1px solid var(--border);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 50px;
+    margin-bottom: 60px;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #333;
+    font-size: 0.85rem;
+    padding-top: 40px;
+    border-top: 1px solid #111;
+}
+
+/* --- 15. RESPONSIVE QUERIES --- */
+@media (max-width: 1024px) {
+    .detail-top-grid { grid-template-columns: 1fr; gap: 40px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+    .navbar { flex-direction: column; height: auto; padding: 25px; gap: 20px; }
+    .search-bar { width: 100%; margin: 0; }
+    .nav-links { gap: 15px; flex-wrap: wrap; justify-content: center; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .newsletter-form { flex-direction: column; }
+    .newsletter-form button { padding: 18px; }
+    .detail-top-grid h1 { font-size: 2.5rem; }
+}
